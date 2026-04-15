@@ -1279,7 +1279,7 @@
 
     <div class="modal-section">
       <h4>Description</h4>
-      <p>The system has two main parts working together. An ESP32-S3 microcontroller is flashed with custom firmware that emulates a Nintendo Switch controller over USB, using a trusted HORI controller VID/PID so the Switch actually recognises it. It connects to the home WiFi network and exposes a REST API, so a Python script on a Windows PC can send button press commands wirelessly over HTTP. The Python script handles all the automation logic — sending button sequences to navigate the game, capturing the Switch screen through OBS Virtual Camera, and using OpenCV to watch for the shiny star indicator on the Pokémon summary screen. When the star is detected across three consecutive frames, the bot stops and beeps to let me know.</p>
+      <p>The system has two main parts working together. An ESP32-S3 microcontroller is flashed with custom firmware that emulates a Nintendo Switch controller over USB, using a trusted HORI controller VID/PID so the Switch actually recognises it. It connects to the home WiFi network and exposes a REST API, so a Python script on a Windows PC can send button press commands wirelessly over HTTP. The Python script handles all the automation logic, sending button sequences to navigate the game, capturing the Switch screen through OBS Virtual Camera, and using OpenCV to watch for the shiny star indicator on the Pokémon summary screen. When the star is detected across three consecutive frames, the bot stops and beeps to let me know.</p>
     </div>
 
     <div class="modal-section">
@@ -1297,7 +1297,7 @@
     <div class="modal-section">
       <h4>Challenges & Problem-Solving</h4>
       <ul class="modal-list">
-        <li><strong>USB HID Enumeration:</strong> The Nintendo Switch is picky about which controllers it trusts. Getting the ESP32 recognised required spoofing a specific trusted controller VID/PID — the HORI Pokken Controller — so the Switch would accept it without any pairing issues.</li>
+        <li><strong>USB HID Enumeration:</strong> The Nintendo Switch is picky about which controllers it trusts. Getting the ESP32 recognised required spoofing a specific trusted controller VID/PID, the HORI Pokken Controller, so the Switch would accept it without any pairing issues.</li>
         <li><strong>mDNS on Windows:</strong> Rather than hardcoding an IP address, I set up mDNS so the Python script could always find the ESP32 by hostname on the local network, even if the IP changed.</li>
         <li><strong>ROI Double-Scaling Bug:</strong> The calibration tool was applying a display scaling factor twice, which shifted the detection region off-target. Tracking this down required stepping through the coordinate pipeline carefully to find where the scaling was being applied more than once.</li>
         <li><strong>Button Timing:</strong> Game load times after a soft reset are not perfectly consistent. The button sequence timings had to be tuned with enough buffer to handle the slowest resets without being so slow that each attempt took unnecessarily long.</li>
